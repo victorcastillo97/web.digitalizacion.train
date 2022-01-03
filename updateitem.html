@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+    <title>CodeF</title>
+
+    <link href="https://unpkg.com/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="/css/app.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+</head>
+
+<!-- hide elements while page load -->
+<style>
+    [x-cloak] {
+        display: none;
+    }
+
+</style>
+
+
+
+<body>
+
+
+    <div class="bg-gray-600 w-full flex items-center" >
+        <div class="container bg-gray-500 items-center w-auto p-2 rounded mx-auto">
+            <div>
+                <h1 id= "tittle" class="font-semibold text-xl text-center p-4"></h1>
+            </div>   
+
+            <div id="form" class="flex bg-gray-400 w-auto flex-col items-center p-4 ">
+                <div class="field py-2 flex justify-between gap-x-2">
+                    <input type="text" ${key_html} placeholder="Key" name="key" ${state} class="py-2 px-2 rounded bg-gray-200 ">
+                    <input type="text" ${value_html} placeholder="Value" name="value" class="py-2 px-2 rounded bg-gray-200 ">
+                    <button class="removefield text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-red-500">X</button>
+                </div>
+            </div>
+
+            <div class="flex gap-x-8 gap-y-4 justify-center p-4">
+                <button id="cancel" class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-red-400">Cancelar</button>
+                <button id="addItem" class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-blue-400">Agregar</button>
+                <button id="sendItems" class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-green-400">Actualizar</button>    
+            </div>
+        </div>
+            
+            
+
+
+
+    </div>    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script>
+
+        function add_fields_form(css_form,state,val_key="",val_value=""){
+            let key_html=""
+            if (val_key){ key_html =  "value = "+ val_key; }
+
+            let value_html = ""
+            if (val_value){ value_html =  "value = "+ val_value; }
+
+            field_html =`
+                <div class="field py-2 flex justify-between gap-x-2">
+                    <input type="text" ${key_html} placeholder="Key" name="key" ${state} class="py-2 px-2 rounded bg-gray-200">
+                    <input type="text" ${value_html} placeholder="Value" name="value" class="py-2 px-2 rounded bg-gray-200">
+                    <button class="removefield text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-red-500">X</button>
+                </div>
+            `;
+            
+            $(css_form).append(field_html)
+        }
+
+        function init_update_item(){
+            $("#tittle")="Actualizar item"
+            $("#sendItems")="Actualizar"
+        }
+
+        function init_add_item(){
+            $("#tittle")="Agregar item"
+            $("#sendItems")="Envíar"
+            
+            
+        }
+
+
+
+
+
+        $(function() {
+
+            $('#addItem').click(function() {
+                add_fields_form("#form","enabled")
+                
+            })
+
+            $(document).on('click','.removefield',function() {
+                $(this).parent('div').remove()
+            })
+
+            $('#sendItems').click(function() {
+                $(".field").each(function(){
+                    let key =  this.querySelector("input[name='key']").value;
+                    let valor =  this.querySelector("input[name='value']").value;
+                    console.log(key,valor)
+                })
+                
+            })
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+

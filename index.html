@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible"
@@ -15,6 +14,8 @@
               href="/css/app.css" />
         <script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
 
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
     </head>
 
     <!-- hide elements while page load -->
@@ -25,13 +26,18 @@
 
     </style>
 
-    <body bg-gray-200>
+
+
+    <body>
+
       <div x-data
-          class="h-screen mx-auto antialiased flex justify-between">  
+          class="h-screen mx-auto antialiased flex justify-between bg-gray-200">  
           <!-- Mobile Menu Toggle -->
 
           <button @click="$store.sidebar.navOpen = !$store.sidebar.navOpen"
-                  class="sm:hidden absolute top-5 right-5 focus:outline-none">
+                  class="sm:hidden absolute top-5  focus:outline-none"
+                  x-bind:class="$store.sidebar.navOpen ? 'right-5':'left-5'">
+
               <!-- Menu Icons -->
               <svg xmlns="http://www.w3.org/2000/svg"
                    class="h-6 w-6"
@@ -42,10 +48,10 @@
                   <path stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M4 6h16M4 12h16m-7 6h7" />
+                        d="M4 6h16M4 12h16M4 18h16" />
               </svg>
 
-              <!-- Close Menu -->
+              <!-- Close Menu 
               <svg x-cloak
                    xmlns="http://www.w3.org/2000/svg"
                    class="h-6 w-6"
@@ -58,20 +64,44 @@
                         stroke-width="2"
                         d="M6 18L18 6M6 6l12 12" />
               </svg>
+
+              -->
           </button>
 
           <div class="h-screen bg-white transition-all duration-300 space-y-2 fixed sm:relative"
                x-bind:class="{'w-64':$store.sidebar.full, 'w-64 sm:w-20':!$store.sidebar.full,'top-0 left-0':$store.sidebar.navOpen,'top-0 -left-64 sm:left-0':!$store.sidebar.navOpen} ">
 
-              <div class="py-3 w-4/6  mx-auto space-y-2">
-                <img class="py-3 max-w-ful" x-bind:class="$store.sidebar.full ? " src="img/protecsologolema-1024x280.png" alt="">
+              <!-- BOTON CERRAR-->
+              <div class="">
+                <button @click="$store.sidebar.navOpen = !$store.sidebar.navOpen" class="sm:hidden absolute top-5  focus:outline-none" x-bind:class="$store.sidebar.navOpen ? 'right-3':''">
+                  <svg x-cloak
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    x-bind:class="$store.sidebar.navOpen ? '':'hidden'"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
+
+              <!-- LOGOTIPO-->
+              <div class="py-3 w-4/6  mx-auto space-y-2">
+                <img class="py-3 max-w-ful"  src="img/protecsologolema-1024x280.png" alt="">
+              </div>
+
+              
+
 
               <div class="px-4 space-y-2">
 
                   <!-- SideBar Toggle -->
                   <button @click="$store.sidebar.full = !$store.sidebar.full"
-                          class="hidden sm:block focus:outline-none absolute p-1 -right-3 top-10 bg-gray-500 rounded-full shadow-md">
+                          class="hidden sm:block focus:outline-none absolute p-1 -right-3 top-10 bg-gray-600 rounded-full shadow-md">
                       <svg xmlns="http://www.w3.org/2000/svg"
                            class="h-4 w-4 transition-all duration-300 text-white transform"
                            x-bind:class="$store.sidebar.full ? 'rotate-90':'-rotate-90 '"
@@ -152,11 +182,239 @@
                   </div>
           </div>
 
-          <!-- CABECERA -->
+          
 
 
       </div>
-        <script src="app.js"></script>
+
+      <!-- SECTION RIGHT -->
+      
+      <div class="h-screen overflow-hidden flex flex-col items-center  w-full  bg-gray-100">
+
+      <!-- CABECERA -->
+      <div class="w-full mx-auto px-4 sm:px-6 ">
+        <div class="flex justify-end items-center py-4 md:justify-start md:space-x-10">
+
+          <div class="-mr-2 -my-2 md:hidden ">
+            <button @click="$store.header.full = !$store.header.full" type="button" class=" rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+              <span class="sr-only">Open menu</span>
+              <!-- Heroicon name: outline/menu -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </button>
+          </div>
+          
+
+          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+              Sign in
+            </a>
+            <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-600 hover:bg-gray-500">
+              Sign up
+            </a>
+          </div>
+        
+        </div>
+      </div>
+
+      <!-- MENU USER -->
+
+      <div class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden bg-white"
+        x-bind:class="$store.header.full ? 'visible':'invisible'"
+      >
+        <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+          <div class="pt-5 pb-6 px-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <img class="h-8 w-auto" src="img/protecsologolema-1024x280.png" alt="Workflow">
+              </div>
+              <div class="-mr-2">
+                <button  @click="$store.header.full = !$store.header.full"  type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span class="sr-only">Close menu</span>
+                  <!-- Heroicon name: outline/x -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="py-4 px-5 space-y-6">
+            <div>
+              <a href="#" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-600 hover:bg-gray-700">
+                Sign up
+              </a>
+              <p class="mt-6 text-center text-base font-medium text-gray-500">
+                Existing customer?
+                <a href="#" class="text-gray-600 hover:text-gray-500">
+                  Sign in
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- TABLA -->
+        <div class="bg-white p-8  w-full">
+        <div class=" flex items-center justify-between pb-6">
+          <div>
+            <h2 class="text-gray-600 font-semibold">Email recibidos</h2>
+            <span class="text-xs">Email recibidos con recibos adjuntos</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex bg-gray-50 items-center p-2 rounded-md">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clip-rule="evenodd" />
+              </svg>
+              <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="Buscar...">
+                </div>
+              <div class="lg:ml-40 ml-10 space-x-8">
+                <button class="bg-gray-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Agregar</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                <table class="min-w-full leading-normal">
+                  <thead>
+                    <tr>
+                      <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Name
+                      </th>
+                      <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        products
+                      </th>
+                      <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Created at
+                      </th>
+                      <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        QRT
+                      </th>
+                      <th
+                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin 1</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <button class="edit_row text-sm text-white transition duration-150 rounded-l bg-blue-500 py-2 px-4">Editar</button>
+                        <button class="remove_row text-sm text-white transition duration-150 rounded-r bg-red-500 py-2 px-4"> Eliminar</button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin 2</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+                      </td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <button class="edit_row text-sm text-white transition duration-150 rounded-l bg-blue-500 py-2 px-4"> Editar</button>
+                        <button class="remove_row text-sm text-white transition duration-150 rounded-r bg-red-500 py-2 px-4"> Eliminar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                  <span id = "state-show-table" class="text-xs xs:text-sm text-gray-900">
+                              </span>
+                  <div class="inline-flex mt-2 xs:mt-0">
+                    <button id="previous_table" 
+                                      class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded-l bg-gray-400">
+                                      Anterior
+                                  </button>
+                    &nbsp; &nbsp;
+                    <button id="next_table"
+                                      class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded-r bg-gray-400">
+                                      Siguiente
+                                  </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+      <script>
+        $(function() {
+            $('tbody').sortable();
+
+            $(document).on('click','.remove_row',function() {
+              $(this).parents('tr').remove();
+                
+            })
+
+            $(document).on('click','.edit_row',function() {
+              let row = $(this).parents('tr').index() + 1 ;
+              console.log(row)
+            })
+
+            /*
+             $('#getValues').click(function(){
+                var values = [];
+                $('input[name="name"]').each(function(i, elem){
+                    values.push($(elem).val());
+                });
+                alert(values.join(', '));
+            });
+            */
+
+        });
+
+      </script>
+
+      <script src="app.js"></script>
+      
     </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
