@@ -1,0 +1,40 @@
+ <div class="w-full h-full flex items-center py-8 absolute z-10 " x-bind:class="$store.reporte.full ? 'visible':'invisible' ">
+        <div class="container items-center w-auto p-4 rounded mx-auto bg-gray-100 shadow-lg">
+            <div class="flex items-center justify-between px-2 mb-2">
+              <div class="w-full text-center">
+                <h1 class="w-auto text-lg font-semibold text-gray-500">Reporte de emails</h1>
+              </div>
+              <div class="-mr-2">
+                <button  @click="$store.reporte.full = !$store.reporte.full"  type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-700 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span class="sr-only">Close menu</span>
+                  <!-- Heroicon name: outline/x -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                <table id="table"class="min-w-full leading-normal">
+                  <thead>
+                    <tr>
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nro.</th>
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Id Documento</th>
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><p class="text-gray-900 whitespace-no-wrap">1</p></td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><p class="text-gray-900 whitespace-no-wrap">9951326</p></td>
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm whitespace-no-wrap">
+                        <a class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-red-500 hover:bg-red-300" href="/view/tipo/recibo/key/{{item[key]}}" target="_blank" >Ver</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>  
+
+        </div>
+      </div> 
+      
