@@ -275,76 +275,17 @@
               <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="Buscar...">
                 </div>
               <div class="lg:ml-40 ml-10 space-x-8">
-                <button class="bg-gray-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Agregar</button>
+                <a class="bg-gray-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer" href="additem.html">Agregar</a>
               </div>
             </div>
           </div>
           <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
               <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
+                <table id="table"class="min-w-full leading-normal">
                   <thead>
-                    <tr>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Name
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        products
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Created at
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        QRT
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Status
-                      </th>
-                    </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin 1</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <button class="edit_row text-sm text-white transition duration-150 rounded-l bg-blue-500 py-2 px-4">Editar</button>
-                        <button class="remove_row text-sm text-white transition duration-150 rounded-r bg-red-500 py-2 px-4"> Eliminar</button>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin 2</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <button class="edit_row text-sm text-white transition duration-150 rounded-l bg-blue-500 py-2 px-4"> Editar</button>
-                        <button class="remove_row text-sm text-white transition duration-150 rounded-r bg-red-500 py-2 px-4"> Eliminar</button>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
                 <div
@@ -370,40 +311,59 @@
       </div>
 
 
+      <div class="w-full h-full flex items-center py-8  " x-bind:class="$store.reporte.full ? 'visible':'invisible' ">
+        <div class="container items-center w-auto p-4 rounded mx-auto bg-white shadow-2xl">
+            <div class="flex items-center justify-between px-2 mb-2">
+              <div class="w-full text-center">
+                <h1 class="w-auto text-lg font-semibold text-gray-500">Mails destinatarios</h1>
+              </div>
+              <div class="-mr-2">
+                <button id="closeReporte" @click="$store.reporte.full = !$store.reporte.full"  type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-700 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span class="sr-only">Close menu</span>
+                  <!-- Heroicon name: outline/x -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden text-center">
+                <table id="table"class="min-w-full leading-normal">
+                  <thead>
+                    <tr>
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-600 uppercase tracking-wider">Nombre</th>
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                      <!--
+                      <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Acción</th>
+                      -->
+                    </tr>
+                  </thead>
+                  <tbody id="modal">
+                     
+                      <!--
+                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm whitespace-no-wrap">
+                        <a class="text-sm text-gray-50 transition duration-150 font-semibold py-2 px-4 rounded bg-red-500 hover:bg-red-300" href="/view/tipo/recibo/key/{{item[key]}}" target="_blank" >Ver</a>
+                      </td>
+                      -->
+                  </tbody>
+                </table>
+            </div>  
 
-
+        </div>
+      </div> 
       
+
+
+
+
+
+
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-      <script>
-        $(function() {
-            $('tbody').sortable();
-
-            $(document).on('click','.remove_row',function() {
-              $(this).parents('tr').remove();
-                
-            })
-
-            $(document).on('click','.edit_row',function() {
-              let row = $(this).parents('tr').index() + 1 ;
-              console.log(row)
-            })
-
-            /*
-             $('#getValues').click(function(){
-                var values = [];
-                $('input[name="name"]').each(function(i, elem){
-                    values.push($(elem).val());
-                });
-                alert(values.join(', '));
-            });
-            */
-
-        });
-
+      <script src="app.js">
+        
       </script>
-
-      <script src="app.js"></script>
       
     </body>
 
